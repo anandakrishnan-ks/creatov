@@ -9,7 +9,7 @@ export function Reveal({ children, className, as: Tag = "div", delay = 0, clip =
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.12 });
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.12 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -32,7 +32,7 @@ export function Eyebrow({ children, className, dark }: { children: ReactNode; cl
 export function SectionHeading({ eyebrow, title, intro, dark, className }: { eyebrow?: string; title: ReactNode; intro?: ReactNode; dark?: boolean; className?: string }) {
   return (
     <Reveal className={cn("max-w-3xl", className)}>
-      {eyebrow && <Eyebrow dark={dark}>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow dark={!!dark}>{eyebrow}</Eyebrow>}
       <h2 className={cn("mt-5 text-4xl font-extrabold leading-[1.02] md:text-6xl", dark ? "text-ink-foreground" : "text-foreground")}>{title}</h2>
       {intro && <div className={cn("mt-6 max-w-2xl text-lg leading-relaxed", dark ? "text-ink-muted" : "text-muted-foreground")}>{intro}</div>}
     </Reveal>
