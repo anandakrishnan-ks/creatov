@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { contact } from "@/lib/site";
-import { logoUrl } from "@/lib/images";
-
+import { logoAltUrl } from "@/lib/images";
 const links = [
   { to: "/", l: "Home" }, { to: "/about", l: "About Us" }, { to: "/services", l: "Services" }, { to: "/projects", l: "Projects" },
   { to: "/process", l: "Our Process" }, { to: "/insights", l: "Insights" }, { to: "/contact", l: "Contact" },
@@ -16,7 +15,7 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
             <div className="inline-block bg-ink-foreground p-4">
-              <img src={logoUrl} alt="CREATOV Engineering Consultancy Pvt. Ltd." className="h-14 w-auto" loading="lazy" />
+              <img src={logoAltUrl} alt="CREATOV Engineering Consultancy Pvt. Ltd." className="h-14 w-auto" loading="lazy" />
             </div>
             <p className="mt-8 font-display text-3xl font-extrabold">Design. Build. Deliver.</p>
             <p className="mt-2 text-ink-muted">From Concept to Completion…</p>
