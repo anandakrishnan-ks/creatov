@@ -91,6 +91,8 @@ function RootComponent() {
   );
 }
 
+const masonryRows = Array.from({ length: 18 }, (_, index) => (index % 2 === 0 ? 8 : 9));
+
 export function BrickPageTransition({ pathname }: { pathname: string }) {
   const initialLoaderDuration = 2050;
   const routeChangeDelay = 1125;
@@ -167,19 +169,37 @@ export function BrickPageTransition({ pathname }: { pathname: string }) {
 
   return (
     <div key={transition.id} className="brick-transition" role="status" aria-live="polite" aria-label={transition.message}>
-      <div className="brick-transition__label">
-        <span>CREATOV</span>
-        <strong>{transition.message}</strong>
-        <span className="brick-transition__progress" aria-hidden="true"><i /></span>
+      <div className="brick-transition__blueprint" aria-hidden="true" />
+      <div className="brick-transition__content">
+        <div className="brick-transition__scene" aria-hidden="true">
+          <div className="brick-transition__crane">
+            <span className="brick-transition__rail" />
+            <span className="brick-transition__trolley">
+              <i className="brick-transition__cable" />
+              <i className="brick-transition__hook" />
+            </span>
+          </div>
+          <div className="brick-transition__wall">
+            {masonryRows.map((brickCount, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="brick-transition__row"
+                style={{ animationDelay: `${rowIndex * 32}ms` }}
+              >
+                {Array.from({ length: brickCount }, (_, brickIndex) => (
+                  <span key={brickIndex} className="brick-transition__brick" />
+                ))}
+              </div>
+            ))}
+          </div>
+          <span className="brick-transition__ground" />
+        </div>
+        <div className="brick-transition__label">
+          <span>CREATOV / SITE IN PROGRESS</span>
+          <strong>{transition.message}</strong>
+          <span className="brick-transition__progress" aria-hidden="true"><i /></span>
+        </div>
       </div>
-      {Array.from({ length: 18 }, (_, index) => (
-        <span
-          key={index}
-          className="brick-transition__brick"
-          aria-hidden="true"
-          style={{ animationDelay: `${index * 22}ms` }}
-        />
-      ))}
     </div>
   );
 }

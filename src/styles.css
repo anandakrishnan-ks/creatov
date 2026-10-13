@@ -201,57 +201,182 @@
   inset: 0;
   z-index: 100;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(9, minmax(0, 1fr));
+  place-items: center;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, oklch(0.31 0.035 58 / 34%), transparent 34rem),
+    var(--color-ink);
   pointer-events: auto;
   contain: strict;
+  isolation: isolate;
 }
 
-.brick-transition__brick {
-  min-width: 0;
-  margin: -0.5px;
-  border: 1px solid oklch(1 0 0 / 20%);
-  background:
-    linear-gradient(145deg, oklch(1 0 0 / 8%), transparent 45%),
-    var(--color-primary);
-  box-shadow:
-    inset 0 0 0 1px oklch(0.12 0.03 264 / 24%),
-    inset 0 -8px 18px oklch(0.12 0.03 264 / 18%);
+.brick-transition__blueprint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 8%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 8%) 1px, transparent 1px);
+  background-position: center;
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+  pointer-events: none;
+}
+
+.brick-transition__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: construction-pass 2.05s ease-in-out both;
+}
+
+.brick-transition__scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.brick-transition__crane {
+  position: absolute;
+  top: clamp(1.5rem, 6vh, 4rem);
+  right: 5%;
+  left: 5%;
+  z-index: 3;
+  height: 4.75rem;
+}
+
+.brick-transition__rail {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: oklch(0.84 0.03 70 / 58%);
+}
+
+.brick-transition__rail::before,
+.brick-transition__rail::after {
+  position: absolute;
+  top: -0.25rem;
+  width: 1px;
+  height: 0.55rem;
+  background: oklch(0.84 0.03 70 / 58%);
+  content: "";
+}
+
+.brick-transition__rail::before { left: 0; }
+.brick-transition__rail::after { right: 0; }
+
+.brick-transition__trolley {
+  position: absolute;
+  top: -0.2rem;
+  left: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--color-signal);
+  box-shadow: 0 0 0 2px oklch(0.16 0.03 264);
+  animation: crane-travel 1.55s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.brick-transition__cable {
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  width: 1px;
+  height: 2.8rem;
+  transform: translateX(-50%);
+  background: oklch(0.84 0.03 70 / 70%);
+}
+
+.brick-transition__hook {
+  position: absolute;
+  top: 3.25rem;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  transform: translateX(-50%) rotate(45deg);
+  border-right: 2px solid var(--color-signal);
+  border-bottom: 2px solid var(--color-signal);
+  border-radius: 0 0 0.25rem;
+}
+
+.brick-transition__wall {
+  position: absolute;
+  inset: -3px;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.4vh, 4px);
+  overflow: hidden;
+}
+
+.brick-transition__row {
+  display: flex;
+  width: calc(100% + clamp(3rem, 10vw, 10rem));
+  min-height: 0;
+  margin-left: clamp(-5rem, -5vw, -1.5rem);
+  flex: 1 1 0;
+  justify-content: center;
+  gap: clamp(2px, 0.4vw, 5px);
   opacity: 0;
-  transform: translate3d(-110vw, 0, 0);
-  animation: brick-build-pass 1.55s cubic-bezier(0.76, 0, 0.24, 1) both;
+  animation: brick-row-set-left 0.72s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   will-change: transform, opacity;
 }
 
-.brick-transition__brick:nth-child(4n + 2) {
-  background:
-    linear-gradient(145deg, oklch(1 0 0 / 7%), transparent 45%),
-    oklch(0.25 0.1 266);
+.brick-transition__row:nth-child(even) {
+  animation-name: brick-row-set-right;
 }
 
-.brick-transition__brick:nth-child(7n) {
+.brick-transition__brick {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  flex: 1 1 0;
+  border: 1px solid oklch(0.36 0.075 43);
+  border-radius: 1px;
   background:
-    linear-gradient(145deg, oklch(1 0 0 / 10%), transparent 45%),
-    var(--color-signal);
+    linear-gradient(155deg, oklch(0.77 0.085 55 / 38%), transparent 45%),
+    linear-gradient(90deg, oklch(0.55 0.105 42), oklch(0.47 0.105 38));
+  box-shadow:
+    inset 0 1px oklch(0.86 0.065 62 / 38%),
+    inset 0 -4px 7px oklch(0.25 0.07 35 / 28%),
+    0 2px 2px oklch(0.1 0.02 264 / 30%);
+}
+
+.brick-transition__row:nth-child(even) .brick-transition__brick:nth-child(2n) {
+  background:
+    linear-gradient(155deg, oklch(0.79 0.08 58 / 34%), transparent 45%),
+    linear-gradient(90deg, oklch(0.58 0.11 47), oklch(0.49 0.11 40));
+}
+
+.brick-transition__ground {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at center, transparent 12%, oklch(0.12 0.025 264 / 18%) 74%);
+  pointer-events: none;
 }
 
 .brick-transition__label {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 2;
+  z-index: 4;
   display: flex;
-  width: min(80vw, 24rem);
+  width: min(86vw, 30rem);
   transform: translate(-50%, -50%);
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
+  border: 1px solid oklch(1 0 0 / 14%);
+  background: oklch(0.16 0.03 264 / 88%);
+  box-shadow: 0 1.5rem 4rem oklch(0.1 0.02 264 / 42%);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
   color: white;
   text-align: center;
   text-shadow: 0 2px 18px oklch(0.12 0.03 264 / 55%);
-  opacity: 0;
-  animation: brick-label 1.1s 0.45s ease-in-out both;
+  backdrop-filter: blur(8px);
 }
 
 .brick-transition__label span {
@@ -262,7 +387,7 @@
 
 .brick-transition__label strong {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-size: clamp(1.35rem, 5vw, 2.5rem);
   letter-spacing: -0.025em;
   text-transform: uppercase;
 }
@@ -274,55 +399,53 @@
   height: 2px;
   margin-top: 0.75rem;
   overflow: hidden;
-  background: oklch(1 0 0 / 22%);
+  background: oklch(1 0 0 / 18%);
 }
 
 .brick-transition__progress i {
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--color-signal);
+  background: linear-gradient(90deg, oklch(0.55 0.105 42), var(--color-signal));
   transform: scaleX(0);
   transform-origin: left;
-  animation: brick-progress 1.65s 0.2s cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation: brick-progress 1.7s 0.12s cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
-@media (min-width: 640px) {
-  .brick-transition {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-  }
-}
-
-@keyframes brick-build-pass {
+@keyframes brick-row-set-left {
   0% {
     opacity: 0;
     transform: translate3d(-110vw, 0, 0);
   }
-  12% {
-    opacity: 1;
-  }
-  30%,
-  85% {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-  100% {
+}
+
+@keyframes brick-row-set-right {
+  0% {
     opacity: 0;
     transform: translate3d(110vw, 0, 0);
   }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@keyframes brick-label {
-  0%,
-  100% {
+@keyframes crane-travel {
+  0% { transform: translateX(-7rem); }
+  55% { transform: translateX(4.5rem); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes construction-pass {
+  0%, 100% {
     opacity: 0;
-    transform: translate(-50%, calc(-50% + 8px));
   }
-  18%,
-  78% {
+  12%, 82% {
     opacity: 1;
-    transform: translate(-50%, -50%);
   }
 }
 
@@ -333,7 +456,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brick-transition {
-    display: none;
+  .brick-transition__content,
+  .brick-transition__row,
+  .brick-transition__trolley,
+  .brick-transition__progress i {
+    animation: none !important;
   }
+
+  .brick-transition__row {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .brick-transition__row:nth-child(n + 17) { display: none; }
+}
+
+@media (min-width: 1024px) {
+  .brick-transition__row:nth-child(n + 15) { display: none; }
+}
+
+@media (min-width: 1536px) {
+  .brick-transition__row:nth-child(n + 13) { display: none; }
 }

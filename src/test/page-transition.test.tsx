@@ -22,7 +22,8 @@ describe("Brick page loader", () => {
     render(<RouterProvider router={router} />);
 
     expect(screen.getByRole("status", { name: "Preparing your experience" })).toBeInTheDocument();
-    expect(document.querySelectorAll(".brick-transition__brick")).toHaveLength(18);
+    expect(document.querySelectorAll(".brick-transition__row")).toHaveLength(18);
+    expect(document.querySelectorAll(".brick-transition__brick")).toHaveLength(153);
 
     act(() => vi.advanceTimersByTime(2049));
     expect(screen.getByRole("status", { name: "Preparing your experience" })).toBeInTheDocument();
