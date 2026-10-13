@@ -14,34 +14,34 @@ function Why() {
     <>
       <PageHero eyebrow="Why CREATOV" image={images.drawings} title="Before You Build, Know What You're Building." intro="Construction mistakes can become expensive." />
 
-      <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:px-10 md:py-36 lg:grid-cols-2">
+      <section className="site-container section-space grid gap-10 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <p className="text-2xl leading-snug font-semibold md:text-3xl">Poor planning, inaccurate quantities, unsuitable designs and unexpected changes can increase both cost and construction time.</p>
+          <p className="text-xl leading-snug font-semibold text-balance sm:text-2xl md:text-3xl">Poor planning, inaccurate quantities, unsuitable designs and unexpected changes can increase both cost and construction time.</p>
         </Reveal>
         <Reveal delay={150}>
           <Eyebrow>CREATOV helps you plan before you build — so your decisions are based on</Eyebrow>
           <ul className="mt-8 border-t border-border">
             {["Drawings", "Quantities", "Technical Requirements", "Realistic Project Planning"].map((x, i) => (
-              <li key={x} className="flex items-baseline gap-6 border-b border-border py-5">
-                <span className="label-mono text-signal">0{i + 1}</span>
-                <span className="font-display text-2xl font-extrabold md:text-3xl">{x}</span>
+              <li key={x} className="flex min-w-0 items-baseline gap-4 border-b border-border py-4 sm:gap-6 sm:py-5">
+                <span className="label-mono shrink-0 text-signal">0{i + 1}</span>
+                <span className="min-w-0 font-display text-xl font-extrabold break-words sm:text-2xl md:text-3xl">{x}</span>
               </li>
             ))}
           </ul>
         </Reveal>
       </section>
 
-      <section className="bg-primary py-20 text-center text-primary-foreground md:py-28">
-        <Reveal><p className="font-display text-5xl font-black tracking-tight md:text-8xl">Plan Better.<br />Build Smarter.</p></Reveal>
+      <section className="bg-primary px-4 py-16 text-center text-primary-foreground sm:py-20 md:py-24 lg:py-28">
+        <Reveal><p className="font-display text-[clamp(2.75rem,9vw,6rem)] leading-[0.95] font-black tracking-tight">Plan Better.<br />Build Smarter.</p></Reveal>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-36">
+      <section className="site-container section-space">
         <SectionHeading eyebrow="Professional consultancy" title="Why Clients Choose Professional Consultancy" />
-        <div className="mt-16 grid gap-y-14 md:grid-cols-12">
+        <div className="mt-12 grid gap-y-10 sm:mt-16 md:grid-cols-12 md:gap-y-12 lg:gap-y-14">
           {benefits.map((b, i) => (
-            <Reveal key={b.t} delay={i * 80} className={i % 2 === 0 ? "md:col-span-5" : "md:col-span-5 md:col-start-8 md:mt-24"}>
-              <div className="flex gap-6 border-t border-foreground pt-6">
-                <span className="font-display text-5xl font-black text-primary/20">{String(i + 1).padStart(2, "0")}</span>
+            <Reveal key={b.t} delay={i * 80} className={i % 2 === 0 ? "md:col-span-5" : "md:col-span-5 md:col-start-8 lg:mt-12"}>
+              <div className="flex gap-4 border-t border-foreground pt-5 sm:gap-6 sm:pt-6">
+                <span className="shrink-0 font-display text-4xl font-black text-primary/20 sm:text-5xl">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="text-2xl font-extrabold">{b.t}</h3>
                   <p className="mt-2 text-muted-foreground">{b.d}</p>

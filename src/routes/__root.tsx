@@ -1,15 +1,20 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import {
+  pageTransitionEvent,
+  TransitionLink as Link,
+  type PageTransitionDetail,
+} from "@/components/site/TransitionLink";
 import { contact } from "@/lib/site";
 
 function NotFoundComponent() {
@@ -56,8 +61,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   return (
     <QueryClientProvider client={queryClient}>
+      <BrickPageTransition pathname={pathname} />
       <Header />
       <main>
         <Outlet />
@@ -67,13 +74,13 @@ function RootComponent() {
         href={`https://wa.me/91${contact.phones[0]}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
+        className="fixed right-4 bottom-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 md:right-6 md:bottom-6 md:h-14 md:w-14"
         aria-label="Chat with us on WhatsApp"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           fill="currentColor"
           viewBox="0 0 16 16"
         >
@@ -81,5 +88,98 @@ function RootComponent() {
         </svg>
       </a>
     </QueryClientProvider>
+  );
+}
+
+export function BrickPageTransition({ pathname }: { pathname: string }) {
+  const initialLoaderDuration = 2050;
+  const routeChangeDelay = 1125;
+  const routeTransitionDuration = 2050;
+  const router = useRouter();
+  const previousPath = useRef(pathname);
+  const controlledPath = useRef<string | null>(null);
+  const active = useRef(true);
+  const navigationTimer = useRef<number | undefined>(undefined);
+  const finishTimer = useRef<number | undefined>(undefined);
+  const [transition, setTransition] = useState({ active: true, id: 0, message: "Preparing your experience" });
+
+  const playTransition = useCallback(
+    (href?: string, destinationPath?: string) => {
+      window.clearTimeout(navigationTimer.current);
+      window.clearTimeout(finishTimer.current);
+      active.current = true;
+      setTransition(({ id }) => ({ active: true, id: id + 1, message: "Building next page" }));
+
+      if (href && destinationPath) {
+        controlledPath.current = destinationPath;
+        navigationTimer.current = window.setTimeout(() => {
+          void router.navigate({ href });
+        }, routeChangeDelay);
+      }
+
+      finishTimer.current = window.setTimeout(() => {
+        active.current = false;
+        setTransition(({ id, message }) => ({ active: false, id, message }));
+      }, routeTransitionDuration);
+    },
+    [routeChangeDelay, routeTransitionDuration, router],
+  );
+
+  useEffect(() => {
+    finishTimer.current = window.setTimeout(() => {
+      active.current = false;
+      setTransition(({ id, message }) => ({ active: false, id, message }));
+    }, initialLoaderDuration);
+  }, [initialLoaderDuration]);
+
+  useEffect(() => {
+    if (previousPath.current === pathname) return;
+
+    previousPath.current = pathname;
+    if (controlledPath.current === pathname) {
+      controlledPath.current = null;
+      return;
+    }
+
+    playTransition();
+  }, [pathname, playTransition]);
+
+  useEffect(() => {
+    const onNavigate = (event: Event) => {
+      if (active.current) return;
+      const { href, pathname: destinationPath } = (event as CustomEvent<PageTransitionDetail>).detail;
+      playTransition(href, destinationPath);
+    };
+
+    window.addEventListener(pageTransitionEvent, onNavigate);
+    return () => window.removeEventListener(pageTransitionEvent, onNavigate);
+  }, [playTransition]);
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(navigationTimer.current);
+      window.clearTimeout(finishTimer.current);
+    },
+    [],
+  );
+
+  if (!transition.active) return null;
+
+  return (
+    <div key={transition.id} className="brick-transition" role="status" aria-live="polite" aria-label={transition.message}>
+      <div className="brick-transition__label">
+        <span>CREATOV</span>
+        <strong>{transition.message}</strong>
+        <span className="brick-transition__progress" aria-hidden="true"><i /></span>
+      </div>
+      {Array.from({ length: 18 }, (_, index) => (
+        <span
+          key={index}
+          className="brick-transition__brick"
+          aria-hidden="true"
+          style={{ animationDelay: `${index * 22}ms` }}
+        />
+      ))}
+    </div>
   );
 }

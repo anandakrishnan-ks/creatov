@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 import { images } from "@/lib/images";
+import { tagline } from "@/lib/site";
 import { CtaBand, PageHero } from "@/components/site/ui";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 
@@ -12,9 +13,9 @@ export const Route = createFileRoute("/process")({
 function Process() {
   return (
     <>
-      <PageHero eyebrow="Our Process" image={images.construction} title="From Concept to Completion." intro="Your Project. One Clear Journey." />
+      <PageHero eyebrow="Our Process" image={images.construction} title={tagline} intro="Your Project. One Clear Journey." />
       <section className="relative bg-ink text-ink-foreground">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-36">
+        <div className="mx-auto w-full max-w-6xl px-[clamp(1rem,4vw,2.5rem)] py-[clamp(4rem,8vw,8rem)]">
           <ProcessTimeline />
         </div>
       </section>

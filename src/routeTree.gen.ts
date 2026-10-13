@@ -15,8 +15,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WhyCreatovRouteImport } from './routes/why-creatov'
+import { Route as ServicesIndexRouteImport } from './routes/services/index'
+import { Route as ServicesSlugRouteImport } from './routes/services/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,14 +49,19 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WhyCreatovRoute = WhyCreatovRouteImport.update({
   id: '/why-creatov',
   path: '/why-creatov',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -66,8 +72,9 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRoute
   '/why-creatov': typeof WhyCreatovRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +83,9 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRoute
   '/why-creatov': typeof WhyCreatovRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +95,9 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRoute
   '/why-creatov': typeof WhyCreatovRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,8 +108,9 @@ export interface FileRouteTypes {
     | '/insights'
     | '/process'
     | '/projects'
-    | '/services'
     | '/why-creatov'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,8 +119,9 @@ export interface FileRouteTypes {
     | '/insights'
     | '/process'
     | '/projects'
-    | '/services'
     | '/why-creatov'
+    | '/services/$slug'
+    | '/services'
   id:
     | '__root__'
     | '/'
@@ -119,8 +130,9 @@ export interface FileRouteTypes {
     | '/insights'
     | '/process'
     | '/projects'
-    | '/services'
     | '/why-creatov'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,8 +142,9 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRoute
-  ServicesRoute: typeof ServicesRoute
   WhyCreatovRoute: typeof WhyCreatovRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -178,18 +191,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/why-creatov': {
       id: '/why-creatov'
       path: '/why-creatov'
       fullPath: '/why-creatov'
       preLoaderRoute: typeof WhyCreatovRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -202,19 +222,10 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRoute,
-  ServicesRoute: ServicesRoute,
   WhyCreatovRoute: WhyCreatovRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

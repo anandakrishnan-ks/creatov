@@ -5,6 +5,8 @@ export const contact = {
   location: "Kollam, Kerala",
 };
 
+export const tagline = "From concept to completion....";
+
 export const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
@@ -27,20 +29,10 @@ export const pillars = [
   { t: "One Professional Team", d: "Multiple construction requirements coordinated through one consultancy." },
 ];
 
-export const services = [
-  { n: "01", t: "Residential Projects", d: "From compact homes to luxury residences, we create designs around your lifestyle, site and budget.", img: "hero" },
-  { n: "02", t: "Commercial Projects", d: "Functional and efficient solutions for offices, shops, institutions and other commercial spaces.", img: "commercial" },
-  { n: "03", t: "Architectural Design", d: "Architectural planning, floor plans, elevations and detailed design solutions.", img: "drawings" },
-  { n: "04", t: "Structural Engineering", d: "Structural planning and engineering solutions focused on safety, durability and efficiency.", img: "construction" },
-  { n: "05", t: "Estimation & BOQ", d: "Detailed quantity calculations, BOQs and project cost estimation to help clients plan their investment.", img: "drawings" },
-  { n: "06", t: "Building Approvals", d: "Support and coordination for building permit and approval requirements.", img: "model" },
-  { n: "07", t: "Construction Consultancy", d: "Technical guidance and professional consultancy throughout construction.", img: "construction" },
-  { n: "08", t: "Renovation & Modification", d: "Practical redesign, extension and renovation solutions for existing buildings.", img: "interior" },
-  { n: "09", t: "Development Projects", d: "Consultancy support for property development, residential projects and larger construction requirements.", img: "model" },
-] as const;
+export const services = serviceDetails;
 
 export const technical = [
-  "Design & Supervision", "Cost Management", "Survey", "3D Elevations", "3D Interior & Exterior Designing",
+  "Design & Supervision", "Cost Management", "Survey", "3D Elevations", "3D Interior & Exterior Design",
   "Industrial Building Projects", "BMS – Building Management Systems", "PMC – Project Management Consultancy", "MEP Services",
 ];
 
@@ -86,3 +78,4 @@ export const projectCategories = ["All", "Residential", "Commercial", "Industria
 // Add real CREATOV projects here — the Projects page renders them automatically.
 export type Project = { title: string; category: Exclude<(typeof projectCategories)[number], "All">; location?: string; image: string };
 export const projects: Project[] = [];
+import { serviceDetails } from "@/lib/service-details";
