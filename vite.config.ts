@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     tsconfigPaths(),
-    TanStackRouterVite(),
+    TanStackRouterVite({ autoCodeSplitting: true }),
     react(),
   ],
+  // Keep diagrams cacheable and load them only when their images enter the page.
+  build: { assetsInlineLimit: 0 },
 });

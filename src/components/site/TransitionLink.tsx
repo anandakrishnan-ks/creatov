@@ -25,7 +25,11 @@ export function TransitionLink({ onClick, ...props }: LinkComponentProps) {
     }
 
     const destination = new URL(event.currentTarget.href, window.location.href);
-    if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname) return;
+    if (
+      destination.origin !== window.location.origin ||
+      destination.pathname === window.location.pathname
+    )
+      return;
 
     event.preventDefault();
     window.dispatchEvent(

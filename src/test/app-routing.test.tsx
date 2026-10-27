@@ -26,4 +26,26 @@ describe("App routing", () => {
       expect(matches.at(-1)?.params).toMatchObject({ slug: service.slug });
     }
   });
+
+  it("matches the FAQ, policy and essential pages", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    for (const path of [
+      "/faq",
+      "/terms-and-conditions",
+      "/privacy-policy",
+      "/cookie-policy",
+      "/accessibility",
+      "/disclaimer",
+      "/sitemap",
+      "/404",
+    ]) {
+      expect(router.matchRoutes(path).at(-1)?.routeId).toBe(path);
+    }
+  });
+
+  it("routes unrecognized addresses through the dedicated not-found handler", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    for (const path of ["/a-page-that-does-not-exist", "/about/missing-page"])
+      expect(router.matchRoutes(path).at(-1)?.routeId).toBe("/$");
+  });
 });
