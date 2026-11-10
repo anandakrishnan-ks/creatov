@@ -2,6 +2,8 @@ import hero from "@/assets/images/home/residence-at-dusk.jpg";
 import homeAbout from "@/assets/images/home/about-studio.jpg";
 import construction from "@/assets/images/home/site-review.jpg";
 import interior from "@/assets/images/about/courtyard-interior.jpg";
+import managingDirector from "@/assets/images/about/riyas-basheer.jpg";
+import mdAward from "@/assets/images/about/best-consultancy-award-oman.jpg";
 import drawings from "@/assets/images/services/cinematic/architectural-design.webp";
 import commercial from "@/assets/images/services/cinematic/commercial-projects.webp";
 import estimationBoq from "@/assets/images/services/cinematic/estimation-and-boq.webp";
@@ -40,6 +42,8 @@ export const images = {
   homeAbout,
   construction,
   interior,
+  managingDirector,
+  mdAward,
   drawings,
   commercial,
   estimationBoq,

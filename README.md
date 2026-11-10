@@ -10,7 +10,7 @@ This project is built using modern web development technologies to ensure speed,
 - **Routing**: [TanStack Router](https://tanstack.com/router/latest) for type-safe client-side routing.
 - **State Management**: [TanStack Query](https://tanstack.com/query/latest) for powerful asynchronous state management and data fetching.
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) for utility-first, responsive styling.
-- **UI Components**: 
+- **UI Components**:
   - Custom UI components built on top of [Radix UI](https://www.radix-ui.com/) primitives for full accessibility.
   - Icons provided by [Lucide React](https://lucide.dev/).
 - **Forms & Validation**: [React Hook Form](https://react-hook-form.com/) coupled with [Zod](https://zod.dev/) for robust schema validation.
@@ -21,12 +21,14 @@ This project is built using modern web development technologies to ensure speed,
 To run this project locally, you will need Node.js and npm installed.
 
 1. **Clone the repository**:
+
    ```sh
    git clone https://github.com/anandakrishnan-ks/creatov.git
    cd creatov
    ```
 
 2. **Install dependencies**:
+
    ```sh
    npm install
    ```
