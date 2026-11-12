@@ -34,7 +34,7 @@ describe("About page", () => {
     // Verify the requested content is present
     expect(
       screen.getByText(
-        /Mr\. Riyas Basheer is a Structural Engineer with over 12 years of professional experience/i,
+        /Mr\. Riyas Basheer is the Managing Director with over 12 years of professional experience/i,
       ),
     ).toBeInTheDocument();
     expect(
@@ -43,7 +43,9 @@ describe("About page", () => {
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Best Consultancy Award in the South Region of Oman \(Jalan Bani Bu Ali\)/i),
+      screen.getByText(
+        /Best Engineering Consultancy Award in south region of oman \(Jalan Bani Bu Ali\)/i,
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -58,7 +60,7 @@ describe("About page", () => {
     expect(mdPhoto).toBeInTheDocument();
 
     const awardPhoto = screen.getByAltText(
-      /Mr\. Riyas Basheer receiving the Best Consultancy Award in the South Region of Oman/i,
+      /Mr\. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman/i,
     );
     expect(awardPhoto).toBeInTheDocument();
   });

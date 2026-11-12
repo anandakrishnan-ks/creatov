@@ -127,7 +127,7 @@ function About() {
           <SectionHeading
             eyebrow="Leadership"
             title="Driven by Technical Rigor. Guided by Experience."
-            intro="Meet Mr. Riyas Basheer, Structural Engineer and Managing Director of CREATOV Engineering Consultancy."
+            intro="Meet Mr. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy."
           />
 
           {/* Profile & Biography */}
@@ -152,10 +152,10 @@ function About() {
                       <p className="font-display text-lg font-extrabold text-foreground">
                         Mr. Riyas Basheer
                       </p>
-                      <p className="label-mono text-xs text-muted-foreground">Managing Director</p>
+                      <p className="label-mono text-xs text-muted-foreground">CREATOV Leadership</p>
                     </div>
                     <span className="label-mono border border-signal/30 bg-signal/5 px-2.5 py-1 text-[0.68rem] font-semibold text-signal">
-                      Structural Engineer
+                      Managing Director
                     </span>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ function About() {
                 className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
               >
                 <p>
-                  Mr. Riyas Basheer is a Structural Engineer with over 12 years of professional
+                  Mr. Riyas Basheer is the Managing Director with over 12 years of professional
                   experience in the engineering and construction industry. With a strong technical
                   foundation and extensive industry exposure, he has developed expertise in
                   structural engineering, construction management, and consultancy.
@@ -247,7 +247,7 @@ function About() {
                     </span>
                   </div>
                   <h4 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-                    Best Consultancy Award in the South Region of Oman
+                    Best Engineering Consultancy Award in south region of oman
                   </h4>
                   <p className="mt-1 label-mono text-xs text-muted-foreground">
                     Jalan Bani Bu Ali &bull; Construction Consultancy Excellence
@@ -255,8 +255,8 @@ function About() {
                   <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
                     In addition to his engineering career, he established and managed a construction
                     consultancy in Oman. His dedication to quality, professional excellence, and
-                    client satisfaction earned him the prestigious Best Consultancy Award in the
-                    South Region of Oman (Jalan Bani Bu Ali).
+                    client satisfaction earned him the prestigious Best Engineering Consultancy
+                    Award in south region of oman (Jalan Bani Bu Ali).
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
                     <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
@@ -277,7 +277,7 @@ function About() {
                     <div className="aspect-[4/3] sm:aspect-[16/12] w-full overflow-hidden bg-muted">
                       <img
                         src={images.mdAward}
-                        alt="Mr. Riyas Basheer receiving the Best Consultancy Award in the South Region of Oman (Jalan Bani Bu Ali)"
+                        alt="Mr. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman (Jalan Bani Bu Ali)"
                         loading="lazy"
                         decoding="async"
                         width={720}
