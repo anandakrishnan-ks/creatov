@@ -164,12 +164,67 @@ export const projectCategories = [
   "Development",
 ] as const;
 
+import { images } from "@/lib/images";
+
+export type ProjectMedia = {
+  src: string;
+  label: string;
+  stage: string;
+};
+
 // Add real CREATOV projects here — the Projects page renders them automatically.
 export type Project = {
+  id?: string;
   title: string;
+  subtitle?: string;
   category: Exclude<(typeof projectCategories)[number], "All">;
   location?: string;
+  status?: string;
   image: string;
+  gallery?: ProjectMedia[];
+  description?: string;
+  scope?: readonly string[];
 };
-export const projects: Project[] = [];
+
+export const projects: Project[] = [
+  {
+    id: "project-1",
+    title: "Project 1",
+    subtitle: "Contemporary Two-Storey Residence",
+    category: "Residential",
+    location: "Kerala",
+    status: "Under Construction",
+    image: images.project1ExteriorDay,
+    description:
+      "A modern contemporary two-storey residence designed with clean geometric volumes, climate-conscious shading, and textured natural finishes. Demonstrating CREATOV's complete journey from 3D architectural visualization and exterior lighting design through to structural plinth foundation and superstructure execution.",
+    scope: [
+      "Architectural Design",
+      "3D Elevation & Lighting",
+      "Structural Engineering",
+      "Site Execution & Supervision",
+    ],
+    gallery: [
+      {
+        src: images.project1ExteriorDay,
+        label: "3D Elevation — Day View",
+        stage: "Design & Visualization",
+      },
+      {
+        src: images.project1ExteriorDusk,
+        label: "3D Elevation — Dusk & Lighting",
+        stage: "Lighting & Facade Design",
+      },
+      {
+        src: images.project1Foundation,
+        label: "Site Execution — Plinth & Foundation",
+        stage: "Foundation Stage",
+      },
+      {
+        src: images.project1Structure,
+        label: "Site Execution — Superstructure & Masonry",
+        stage: "Superstructure Stage",
+      },
+    ],
+  },
+];
 import { serviceDetails } from "@/lib/service-details";

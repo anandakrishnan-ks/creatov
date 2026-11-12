@@ -18,6 +18,10 @@ import insightsBanner from "@/assets/images/banners/cinematic/insights.webp";
 import contactBanner from "@/assets/images/banners/cinematic/contact.webp";
 import servicesBanner from "@/assets/images/banners/cinematic/services.webp";
 import projectsBanner from "@/assets/images/banners/cinematic/projects.webp";
+import project1ExteriorDay from "@/assets/images/projects/project-1-exterior-day.jpg";
+import project1ExteriorDusk from "@/assets/images/projects/project-1-exterior-dusk.jpg";
+import project1Foundation from "@/assets/images/projects/project-1-foundation-stage.jpg";
+import project1Structure from "@/assets/images/projects/project-1-structure-stage.jpg";
 import processBanner from "@/assets/images/banners/cinematic/process.webp";
 import planningBanner from "@/assets/images/banners/cinematic/why-creatov.webp";
 import processConsult from "@/assets/images/process/cinematic/consult.webp";
@@ -58,6 +62,10 @@ export const images = {
   contactBanner,
   servicesBanner,
   projectsBanner,
+  project1ExteriorDay,
+  project1ExteriorDusk,
+  project1Foundation,
+  project1Structure,
   processBanner,
   planningBanner,
   processConsult,
