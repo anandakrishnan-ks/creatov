@@ -127,131 +127,117 @@ function About() {
           <SectionHeading
             eyebrow="Leadership"
             title="Driven by Technical Rigor. Guided by Experience."
-            intro="Meet the leadership team guiding CREATOV Engineering Consultancy."
+            intro="Meet Mr. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy."
           />
 
-          {/* Directors Grid */}
-          <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-2">
-            {/* Managing Director: Mr. Riyas Basheer */}
-            <Reveal clip className="h-full">
-              <div className="flex h-full flex-col border border-border bg-card p-5 shadow-xs sm:p-6">
-                <div className="grid gap-5 sm:grid-cols-[170px_1fr] sm:gap-6">
-                  {/* Smaller Photo */}
-                  <div className="mx-auto w-40 shrink-0 overflow-hidden border border-border bg-muted sm:w-full">
-                    <img
-                      src={images.managingDirector}
-                      alt="Mr. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy"
-                      loading="lazy"
-                      decoding="async"
-                      width={882}
-                      height={1024}
-                      className="aspect-[4/5] w-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                    />
-                  </div>
-
-                  {/* Info & Typography (Smaller & Refined) */}
-                  <div className="flex flex-col justify-between">
+          {/* Profile & Biography */}
+          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
+            {/* Portrait Photo */}
+            <Reveal clip className="lg:col-span-5">
+              <div className="group relative border border-border bg-card">
+                <div className="aspect-[4/5] w-full overflow-hidden bg-muted">
+                  <img
+                    src={images.managingDirector}
+                    alt="Mr. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy"
+                    loading="lazy"
+                    decoding="async"
+                    width={882}
+                    height={1024}
+                    className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="border-t border-border bg-background/95 p-4 sm:p-5">
+                  <div className="flex items-center justify-between gap-2">
                     <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="label-mono border border-signal/30 bg-signal/5 px-2.5 py-0.5 text-[0.68rem] font-semibold text-signal">
-                          Managing Director
-                        </span>
-                        <span className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.65rem] text-muted-foreground">
-                          12+ Yrs Experience
-                        </span>
-                      </div>
-
-                      <h3 className="mt-2.5 font-display text-xl font-extrabold text-foreground sm:text-2xl">
+                      <p className="font-display text-lg font-extrabold text-foreground">
                         Mr. Riyas Basheer
-                      </h3>
-                      <p className="label-mono text-[0.72rem] font-semibold text-primary">
-                        Structural Engineering &amp; Construction Consultancy
                       </p>
-
-                      <div className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                        <p>
-                          Mr. Riyas Basheer is the Managing Director with over 12 years of
-                          professional experience in the engineering and construction industry. With
-                          a strong technical foundation and extensive industry exposure, he has
-                          developed expertise in structural engineering, construction management,
-                          and consultancy.
-                        </p>
-                        <p>
-                          With his technical expertise, entrepreneurial experience, and visionary
-                          leadership, he brings a strong commitment to excellence, innovation, and
-                          sustainable development.
-                        </p>
-                      </div>
+                      <p className="label-mono text-xs text-muted-foreground">CREATOV Leadership</p>
                     </div>
+                    <span className="label-mono border border-signal/30 bg-signal/5 px-2.5 py-1 text-[0.68rem] font-semibold text-signal">
+                      Managing Director
+                    </span>
                   </div>
                 </div>
               </div>
             </Reveal>
 
-            {/* Director: Sadeena Noorjahan */}
-            <Reveal clip delay={100} className="h-full">
-              <div className="flex h-full flex-col border border-border bg-card p-5 shadow-xs sm:p-6">
-                <div className="grid gap-5 sm:grid-cols-[170px_1fr] sm:gap-6">
-                  {/* Matching Smaller Photo */}
-                  <div className="mx-auto w-40 shrink-0 overflow-hidden border border-border bg-muted sm:w-full">
-                    <img
-                      src={images.directorSadeena}
-                      alt="Sadeena Noorjahan, Director of CREATOV Engineering Consultancy"
-                      loading="lazy"
-                      decoding="async"
-                      width={788}
-                      height={1024}
-                      className="aspect-[4/5] w-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                    />
-                  </div>
-
-                  {/* Info & Typography */}
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="label-mono border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[0.68rem] font-semibold text-primary">
-                          Director
-                        </span>
-                        <span className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.65rem] text-muted-foreground">
-                          Management &amp; Operations
-                        </span>
-                      </div>
-
-                      <h3 className="mt-2.5 font-display text-xl font-extrabold text-foreground sm:text-2xl">
-                        Sadeena Noorjahan
-                      </h3>
-                      <p className="label-mono text-[0.72rem] font-semibold text-primary">
-                        Executive Oversight &amp; Strategic Direction
-                      </p>
-
-                      <div className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                        <p>
-                          As Director at CREATOV Engineering Consultancy, Sadeena Noorjahan plays an
-                          integral role in strategic management, operational excellence, and
-                          organizational growth. She ensures every project reflects the firm’s
-                          commitment to quality and transparency.
-                        </p>
-                        <p>
-                          Working alongside the technical and execution teams, she brings dedicated
-                          leadership towards client satisfaction, seamless project coordination, and
-                          establishing lasting client partnerships.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+            {/* Bio content */}
+            <div className="lg:col-span-7">
+              <Reveal delay={80}>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                    12+ Years Industry Experience
+                  </span>
+                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                    Structural Engineering
+                  </span>
+                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                    Consultancy Management
+                  </span>
                 </div>
-              </div>
-            </Reveal>
+                <h3 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+                  Engineering Rigor &amp; Practical Industry Exposure
+                </h3>
+              </Reveal>
+
+              <Reveal
+                delay={140}
+                className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
+              >
+                <p>
+                  Mr. Riyas Basheer is the Managing Director with over 12 years of professional
+                  experience in the engineering and construction industry. With a strong technical
+                  foundation and extensive industry exposure, he has developed expertise in
+                  structural engineering, construction management, and consultancy.
+                </p>
+                <p>
+                  With his technical expertise, entrepreneurial experience, and visionary
+                  leadership, he brings a strong commitment to excellence, innovation, and
+                  sustainable development.
+                </p>
+              </Reveal>
+
+              <Reveal delay={200} className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="border border-border bg-paper/60 p-4">
+                  <p className="label-mono text-signal">Foundation</p>
+                  <p className="mt-1 font-display text-base font-bold text-foreground">
+                    Technical Foundation
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Structural engineering analysis &amp; sound execution
+                  </p>
+                </div>
+                <div className="border border-border bg-paper/60 p-4">
+                  <p className="label-mono text-signal">Leadership</p>
+                  <p className="mt-1 font-display text-base font-bold text-foreground">
+                    Consultancy Management
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Comprehensive project oversight &amp; coordination
+                  </p>
+                </div>
+                <div className="border border-border bg-paper/60 p-4">
+                  <p className="label-mono text-signal">Vision</p>
+                  <p className="mt-1 font-display text-base font-bold text-foreground">
+                    Sustainable Growth
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Commitment to excellence &amp; modern innovation
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
 
           {/* Award Spotlight (Photo 2 context) */}
-          <Reveal delay={120} className="mt-10 sm:mt-12">
-            <div className="relative overflow-hidden border border-border bg-paper p-5 sm:p-6 lg:p-8">
+          <Reveal delay={120} className="mt-12 sm:mt-16">
+            <div className="relative overflow-hidden border border-border bg-paper p-6 sm:p-8 lg:p-10">
               <div
                 className="blueprint-grid pointer-events-none absolute inset-0 opacity-40"
                 aria-hidden
               />
-              <div className="relative grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-10">
+              <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
                 {/* Content */}
                 <div className="lg:col-span-7">
                   <div className="inline-flex items-center gap-2 border border-signal/30 bg-signal/10 px-3 py-1.5 text-signal">
@@ -260,26 +246,26 @@ function About() {
                       International Recognition &bull; Oman
                     </span>
                   </div>
-                  <h4 className="mt-3 font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+                  <h4 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
                     Best Engineering Consultancy Award in south region of oman
                   </h4>
                   <p className="mt-1 label-mono text-xs text-muted-foreground">
                     Jalan Bani Bu Ali &bull; Construction Consultancy Excellence
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
                     In addition to his engineering career, he established and managed a construction
                     consultancy in Oman. His dedication to quality, professional excellence, and
                     client satisfaction earned him the prestigious Best Engineering Consultancy
                     Award in south region of oman (Jalan Bani Bu Ali).
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.72rem] text-foreground">
+                  <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
+                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
                       Dedication to Quality
                     </span>
-                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.72rem] text-foreground">
+                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
                       Professional Excellence
                     </span>
-                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.72rem] text-foreground">
+                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
                       Client Satisfaction
                     </span>
                   </div>
@@ -287,8 +273,8 @@ function About() {
 
                 {/* Award Ceremony Photo */}
                 <div className="lg:col-span-5">
-                  <div className="group relative mx-auto max-w-md overflow-hidden border border-border bg-background shadow-xs">
-                    <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
+                  <div className="group relative overflow-hidden border border-border bg-background shadow-xs">
+                    <div className="aspect-[4/3] sm:aspect-[16/12] w-full overflow-hidden bg-muted">
                       <img
                         src={images.mdAward}
                         alt="Mr. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman (Jalan Bani Bu Ali)"
@@ -299,7 +285,7 @@ function About() {
                         className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
                       />
                     </div>
-                    <div className="border-t border-border bg-background/95 p-3 text-xs text-muted-foreground">
+                    <div className="border-t border-border bg-background/95 p-3.5 sm:p-4 text-xs text-muted-foreground">
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-semibold text-foreground">
                           Award Presentation Ceremony
@@ -308,11 +294,40 @@ function About() {
                           Oman
                         </span>
                       </div>
-                      <p className="mt-0.5 text-[0.72rem] text-muted-foreground">
+                      <p className="mt-0.5 text-[0.76rem] text-muted-foreground">
                         South Region of Oman (Jalan Bani Bu Ali)
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Director: Sadeena Noorjahan (Photo, Name, Designation) */}
+          <Reveal clip className="mt-12 sm:mt-16">
+            <div className="border-t border-border pt-8 sm:pt-10">
+              <p className="label-mono text-xs font-semibold uppercase tracking-wider text-primary">
+                Board &amp; Leadership
+              </p>
+              <div className="mt-4 flex max-w-sm items-center gap-4 border border-border bg-card p-4 sm:gap-5 sm:p-5 shadow-xs">
+                <img
+                  src={images.directorSadeena}
+                  alt="Sadeena Noorjahan, Director of CREATOV Engineering Consultancy"
+                  loading="lazy"
+                  decoding="async"
+                  width={788}
+                  height={1024}
+                  className="aspect-[4/5] w-24 shrink-0 border border-border bg-muted object-cover object-top sm:w-28"
+                />
+                <div className="min-w-0">
+                  <span className="label-mono border border-primary/30 bg-primary/10 px-2 py-0.5 text-[0.68rem] font-semibold text-primary">
+                    Director
+                  </span>
+                  <h3 className="mt-2 font-display text-lg font-extrabold text-foreground sm:text-xl">
+                    Sadeena Noorjahan
+                  </h3>
+                  <p className="label-mono mt-0.5 text-xs text-muted-foreground">Director</p>
                 </div>
               </div>
             </div>
