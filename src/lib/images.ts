@@ -3,6 +3,7 @@ import homeAbout from "@/assets/images/home/about-studio.jpg";
 import construction from "@/assets/images/home/site-review.jpg";
 import interior from "@/assets/images/about/courtyard-interior.jpg";
 import managingDirector from "@/assets/images/about/riyas-basheer.jpg";
+import directorSadeena from "@/assets/images/about/sadeena-noorjahan.jpg";
 import mdAward from "@/assets/images/about/best-consultancy-award-oman.jpg";
 import drawings from "@/assets/images/services/cinematic/architectural-design.webp";
 import commercial from "@/assets/images/services/cinematic/commercial-projects.webp";
@@ -47,6 +48,7 @@ export const images = {
   construction,
   interior,
   managingDirector,
+  directorSadeena,
   mdAward,
   drawings,
   commercial,

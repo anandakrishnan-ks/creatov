@@ -31,6 +31,10 @@ describe("About page", () => {
     expect(screen.getAllByText(/Mr\. Riyas Basheer/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Managing Director/i).length).toBeGreaterThan(0);
 
+    // Verify Director Sadeena Noorjahan
+    expect(screen.getAllByText(/Sadeena Noorjahan/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^Director$/i).length).toBeGreaterThan(0);
+
     // Verify the requested content is present
     expect(
       screen.getByText(
@@ -53,11 +57,16 @@ describe("About page", () => {
       ),
     ).toBeInTheDocument();
 
-    // Verify both photos are rendered with accurate alt texts
+    // Verify photos are rendered with accurate alt texts
     const mdPhoto = screen.getByAltText(
       /Mr\. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy/i,
     );
     expect(mdPhoto).toBeInTheDocument();
+
+    const directorPhoto = screen.getByAltText(
+      /Sadeena Noorjahan, Director of CREATOV Engineering Consultancy/i,
+    );
+    expect(directorPhoto).toBeInTheDocument();
 
     const awardPhoto = screen.getByAltText(
       /Mr\. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman/i,
