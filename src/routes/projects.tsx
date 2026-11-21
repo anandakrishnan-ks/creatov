@@ -234,61 +234,114 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
             <button
               type="button"
               onClick={handlePrev}
-              aria-label="Previous photo"
-              className="pointer-events-auto flex h-8 w-8 items-center justify-center bg-ink/75 text-ink-foreground backdrop-blur-xs transition-colors hover:bg-ink"
+              aria-label="Previous project photo"
+              className="pointer-events-auto flex h-8 w-8 items-center justify-center bg-ink/75 text-ink-foreground backdrop-blur-xs transition-colors hover:bg-ink focus-visible:outline-signal"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               type="button"
               onClick={handleNext}
-              aria-label="Next photo"
-              className="pointer-events-auto flex h-8 w-8 items-center justify-center bg-ink/75 text-ink-foreground backdrop-blur-xs transition-colors hover:bg-ink"
+              aria-label="Next project photo"
+              className="pointer-events-auto flex h-8 w-8 items-center justify-center bg-ink/75 text-ink-foreground backdrop-blur-xs transition-colors hover:bg-ink focus-visible:outline-signal"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
         )}
+
+        {/* Caption & Counter */}
+        <div className="flex items-center justify-between border-t border-border bg-background/95 px-3.5 py-2 text-xs backdrop-blur-xs">
+          <span className="truncate pr-2 font-semibold text-foreground">{current.label}</span>
+          <span className="label-mono shrink-0 text-muted-foreground">
+            {activeIdx + 1} / {gallery.length}
+          </span>
+        </div>
       </div>
 
       {/* Thumbnails strip */}
       {gallery.length > 1 && (
-        <div className="grid grid-cols-4 gap-1 border-t border-border bg-background p-1.5">
-          {gallery.map((item, idx) => (
-            <button
-              key={item.label}
-              type="button"
-              onClick={() => setActiveIdx(idx)}
-              className={cn(
-                "aspect-[4/3] overflow-hidden border transition-all",
-                idx === activeIdx
-                  ? "border-signal ring-1 ring-signal"
-                  : "border-border opacity-70 hover:opacity-100",
-              )}
-            >
-              <img
-                src={item.src}
-                alt=""
-                aria-hidden="true"
-                className="h-full w-full object-cover"
-              />
-            </button>
-          ))}
+        <div
+          className={cn(
+            "grid gap-1.5 border-t border-border bg-background p-1.5",
+            gallery.length === 2 ? "grid-cols-2" : "grid-cols-4",
+          )}
+        >
+          {gallery.map((item, idx) => {
+            const isActive = idx === activeIdx;
+            return (
+              <button
+                key={item.label}
+                type="button"
+                aria-label={`${item.label} — ${item.stage}`}
+                onClick={() => setActiveIdx(idx)}
+                className={cn(
+                  "group relative overflow-hidden border p-1 text-left transition-all",
+                  isActive
+                    ? "border-signal bg-signal/5 ring-1 ring-signal"
+                    : "border-border bg-background opacity-80 hover:border-foreground/40 hover:opacity-100",
+                )}
+              >
+                <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <p
+                  className={cn(
+                    "label-mono mt-1 truncate px-0.5 text-[0.62rem] leading-tight",
+                    isActive ? "font-bold text-signal" : "text-muted-foreground",
+                  )}
+                >
+                  {item.stage.replace(/ Stage| & Visualization/, "")}
+                </p>
+              </button>
+            );
+          })}
         </div>
       )}
 
-      <div className="p-5 sm:p-6">
-        <p className="label-mono text-signal">
-          {project.category}
-          {project.location ? ` · ${project.location}` : ""}
-        </p>
-        <h2 className="mt-2 text-2xl font-extrabold text-foreground">{project.title}</h2>
-        {project.subtitle && (
-          <p className="mt-0.5 text-sm font-semibold text-muted-foreground">{project.subtitle}</p>
-        )}
-        {project.description && (
-          <p className="mt-3 line-clamp-3 text-sm text-muted-foreground">{project.description}</p>
-        )}
+      <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+        <div>
+          <p className="label-mono font-semibold text-signal">
+            {project.category}
+            {project.location ? ` · ${project.location}` : ""}
+          </p>
+          <h2 className="mt-2 text-2xl font-extrabold text-foreground">{project.title}</h2>
+          {project.subtitle && (
+            <p className="mt-0.5 text-sm font-semibold text-muted-foreground">{project.subtitle}</p>
+          )}
+          {project.description && (
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+          )}
+
+          {project.scope && project.scope.length > 0 && (
+            <div className="mt-5 border-t border-border pt-4">
+              <p className="label-mono text-[0.68rem] font-semibold text-foreground">
+                Project Scope
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {project.scope.map((s) => (
+                  <span
+                    key={s}
+                    className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.68rem] font-medium text-foreground"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-6 border-t border-border pt-4">
+          <CtaLink to="/contact">Discuss A Similar Project</CtaLink>
+        </div>
       </div>
     </article>
   );

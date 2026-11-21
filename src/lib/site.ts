@@ -226,5 +226,34 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: "residential-building-alappuzha",
+    title: "Residential Building",
+    subtitle: "Modern Single-Storey Residence with Central Courtyard",
+    category: "Residential",
+    location: "Vandanam P.O., Alappuzha",
+    status: "Completed",
+    image: images.project2Exterior,
+    description:
+      "A modern single-storey residence designed and executed in Vandanam, Alappuzha. The home features an open-concept living and dining layout centered around an illuminated traditional sunken courtyard (nadumuttam) with natural stone cladding, balanced by clean colonial-contemporary exterior lines, classical pillars, and rooftop solar integration.",
+    scope: [
+      "Architectural Design",
+      "Interior & Courtyard Design",
+      "3D Elevation",
+      "Structural Planning",
+    ],
+    gallery: [
+      {
+        src: images.project2Exterior,
+        label: "Exterior Elevation — Front Facade",
+        stage: "Architectural Elevation",
+      },
+      {
+        src: images.project2Interior,
+        label: "Interior Architecture — Sunken Courtyard & Dining",
+        stage: "Interior Design",
+      },
+    ],
+  },
 ];
 import { serviceDetails } from "@/lib/service-details";

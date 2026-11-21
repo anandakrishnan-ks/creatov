@@ -300,93 +300,99 @@ function Home() {
               </Reveal>
             </div>
 
-            <div className="mt-9 sm:mt-12">
-              {projects.slice(0, 1).map((p) => (
-                <Reveal key={p.title}>
-                  <Link
-                    to="/projects"
-                    className="group block border border-border bg-card transition-all duration-300 hover:border-foreground/40 hover:shadow-md"
-                  >
-                    <div className="grid gap-0 lg:grid-cols-12">
-                      {/* Visual Comparison: 3D Render vs Site Execution */}
-                      <div className="grid grid-cols-2 gap-px bg-border lg:col-span-7">
-                        <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
-                          <img
-                            src={p.gallery?.[0]?.src ?? p.image}
-                            alt={`${p.title} 3D Elevation`}
-                            loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                          <span className="label-mono absolute bottom-2 left-2 bg-ink/85 px-2 py-0.5 text-[0.65rem] text-ink-foreground backdrop-blur-xs">
-                            3D Design View
-                          </span>
-                        </div>
-                        <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
-                          <img
-                            src={p.gallery?.[3]?.src ?? p.gallery?.[2]?.src ?? p.image}
-                            alt={`${p.title} Site Execution`}
-                            loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                          <span className="label-mono absolute bottom-2 left-2 bg-signal px-2 py-0.5 text-[0.65rem] font-bold text-white">
-                            Site Execution
-                          </span>
-                        </div>
-                      </div>
+            <div className="mt-9 space-y-8 sm:mt-12">
+              {projects.map((p) => {
+                const firstMedia = p.gallery?.[0];
+                const secondMedia =
+                  p.gallery && p.gallery.length > 1 ? p.gallery[p.gallery.length - 1] : firstMedia;
 
-                      {/* Metadata & Description */}
-                      <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
-                        <div>
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="label-mono font-semibold text-signal">
-                              {p.category}
-                              {p.location ? ` · ${p.location}` : ""}
+                return (
+                  <Reveal key={p.title}>
+                    <Link
+                      to="/projects"
+                      className="group block border border-border bg-card transition-all duration-300 hover:border-foreground/40 hover:shadow-md"
+                    >
+                      <div className="grid gap-0 lg:grid-cols-12">
+                        {/* Visual Comparison: 2 Key Media Views */}
+                        <div className="grid grid-cols-2 gap-px bg-border lg:col-span-7">
+                          <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
+                            <img
+                              src={firstMedia?.src ?? p.image}
+                              alt={`${p.title} — ${firstMedia?.label ?? "Primary View"}`}
+                              loading="lazy"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <span className="label-mono absolute bottom-2 left-2 bg-ink/85 px-2 py-0.5 text-[0.65rem] text-ink-foreground backdrop-blur-xs">
+                              {firstMedia?.stage ?? "Design View"}
                             </span>
-                            {p.status && (
-                              <span className="label-mono border border-signal/30 bg-signal/10 px-2 py-0.5 text-[0.68rem] font-semibold text-signal">
-                                {p.status}
+                          </div>
+                          <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
+                            <img
+                              src={secondMedia?.src ?? p.image}
+                              alt={`${p.title} — ${secondMedia?.label ?? "Secondary View"}`}
+                              loading="lazy"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <span className="label-mono absolute bottom-2 left-2 bg-signal px-2 py-0.5 text-[0.65rem] font-bold text-white">
+                              {secondMedia?.stage ?? "Execution"}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Metadata & Description */}
+                        <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
+                          <div>
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="label-mono font-semibold text-signal">
+                                {p.category}
+                                {p.location ? ` · ${p.location}` : ""}
                               </span>
+                              {p.status && (
+                                <span className="label-mono border border-signal/30 bg-signal/10 px-2 py-0.5 text-[0.68rem] font-semibold text-signal">
+                                  {p.status}
+                                </span>
+                              )}
+                            </div>
+
+                            <h3 className="mt-3 font-display text-2xl font-extrabold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+                              {p.title}
+                            </h3>
+                            {p.subtitle && (
+                              <p className="mt-0.5 text-base font-semibold text-muted-foreground">
+                                {p.subtitle}
+                              </p>
+                            )}
+
+                            {p.description && (
+                              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                                {p.description}
+                              </p>
+                            )}
+
+                            {p.scope && p.scope.length > 0 && (
+                              <div className="mt-5 flex flex-wrap gap-1.5">
+                                {p.scope.slice(0, 3).map((s) => (
+                                  <span
+                                    key={s}
+                                    className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.68rem] text-muted-foreground"
+                                  >
+                                    {s}
+                                  </span>
+                                ))}
+                              </div>
                             )}
                           </div>
 
-                          <h3 className="mt-3 font-display text-2xl font-extrabold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
-                            {p.title}
-                          </h3>
-                          {p.subtitle && (
-                            <p className="mt-0.5 text-base font-semibold text-muted-foreground">
-                              {p.subtitle}
-                            </p>
-                          )}
-
-                          {p.description && (
-                            <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                              {p.description}
-                            </p>
-                          )}
-
-                          {p.scope && p.scope.length > 0 && (
-                            <div className="mt-5 flex flex-wrap gap-1.5">
-                              {p.scope.slice(0, 3).map((s) => (
-                                <span
-                                  key={s}
-                                  className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.68rem] text-muted-foreground"
-                                >
-                                  {s}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-xs font-bold tracking-[0.14em] uppercase text-primary transition-transform duration-300 group-hover:translate-x-1">
-                          <span>View Project &amp; Full Gallery</span>
-                          <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:rotate-45" />
+                          <div className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-xs font-bold tracking-[0.14em] uppercase text-primary transition-transform duration-300 group-hover:translate-x-1">
+                            <span>View Project &amp; Full Gallery</span>
+                            <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:rotate-45" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
+                    </Link>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
