@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { TransitionLink as Link } from "@/components/site/TransitionLink";
 import { seo } from "@/lib/seo";
 import { images } from "@/lib/images";
-import { sectors, pillars, services, audiences, tagline, projects } from "@/lib/site";
+import { sectors, pillars, services, audiences, tagline, projects, type Project } from "@/lib/site";
 import { CtaLink, Eyebrow, Reveal, SectionHeading } from "@/components/site/ui";
 import { HomeContact } from "@/components/site/HomeContact";
 import { FaqSection } from "@/components/site/FaqSection";
 import { homeFaqs } from "@/lib/home-faqs";
 import { Parallax, ParallaxImage } from "@/components/site/Parallax";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -18,6 +20,126 @@ export const Route = createFileRoute("/")({
     ),
   component: Home,
 });
+
+function HomeProjectCard({ project }: { project: Project }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  // Pick up to 2 distinct representative images (primary view and latest stage/interior)
+  const mediaList =
+    project.gallery && project.gallery.length > 0
+      ? [project.gallery[0]!, project.gallery[project.gallery.length - 1]!]
+      : [{ src: project.image, label: project.title, stage: project.category }];
+
+  const uniqueMedia = mediaList.filter(
+    (item, index, self) => index === self.findIndex((m) => m.src === item.src),
+  );
+  const current = uniqueMedia[activeIdx] ?? uniqueMedia[0]!;
+
+  return (
+    <article className="group flex h-full flex-col border border-border bg-card transition-all duration-300 hover:border-foreground/40 hover:shadow-md">
+      {/* Visual Header */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+        <Link to="/projects" className="block h-full w-full">
+          <img
+            src={current.src}
+            alt={`${project.title} — ${current.label}`}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </Link>
+
+        {/* Top Badges */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3 sm:p-4">
+          <span className="label-mono flex items-center gap-1 bg-ink/90 px-2.5 py-1 text-[0.68rem] font-semibold text-white backdrop-blur-xs">
+            <MapPin className="h-3 w-3 shrink-0 text-signal" />
+            {project.category}
+            {project.location ? ` · ${project.location}` : ""}
+          </span>
+          {project.status && (
+            <span
+              className={cn(
+                "label-mono px-2.5 py-1 text-[0.68rem] font-bold text-white",
+                project.status === "Completed" ? "bg-emerald-600" : "bg-signal",
+              )}
+            >
+              {project.status}
+            </span>
+          )}
+        </div>
+
+        {/* Interactive View Switcher Bar */}
+        {uniqueMedia.length > 1 && (
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/10 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-2.5 sm:p-3">
+            <span className="truncate pr-2 text-xs font-medium text-white/90 drop-shadow-xs">
+              {current.label}
+            </span>
+            <div className="flex shrink-0 gap-1.5">
+              {uniqueMedia.map((m, idx) => (
+                <button
+                  key={m.label}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveIdx(idx);
+                  }}
+                  className={cn(
+                    "label-mono cursor-pointer px-2.5 py-0.5 text-[0.65rem] font-semibold transition-all backdrop-blur-xs",
+                    idx === activeIdx
+                      ? "bg-white text-ink shadow-xs"
+                      : "bg-black/50 text-white/80 hover:bg-black/75 hover:text-white",
+                  )}
+                >
+                  {m.stage.replace(/ Stage| & Visualization/, "")}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Content & Metadata */}
+      <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+        <div>
+          <h3 className="font-display text-xl font-extrabold text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+            <Link to="/projects">{project.title}</Link>
+          </h3>
+          {project.subtitle && (
+            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.subtitle}</p>
+          )}
+
+          {project.description && (
+            <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+          )}
+
+          {project.scope && project.scope.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {project.scope.slice(0, 3).map((s) => (
+                <span
+                  key={s}
+                  className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.68rem] text-muted-foreground"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="mt-5 border-t border-border pt-4">
+          <Link
+            to="/projects"
+            className="flex items-center justify-between text-xs font-bold tracking-[0.12em] uppercase text-primary transition-colors group-hover:text-signal"
+          >
+            <span>View Project &amp; Full Gallery</span>
+            <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 const approach = ["Listen", "Understand", "Design", "Plan", "Deliver"];
 
@@ -286,7 +408,7 @@ function Home() {
       {/* PROJECTS PREVIEW */}
       {projects.length > 0 && (
         <section className="border-t border-border bg-paper/30">
-          <div className="site-container section-space">
+          <div className="site-container section-space-compact">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <SectionHeading
                 eyebrow="Selected Projects"
@@ -300,99 +422,12 @@ function Home() {
               </Reveal>
             </div>
 
-            <div className="mt-9 space-y-8 sm:mt-12">
-              {projects.map((p) => {
-                const firstMedia = p.gallery?.[0];
-                const secondMedia =
-                  p.gallery && p.gallery.length > 1 ? p.gallery[p.gallery.length - 1] : firstMedia;
-
-                return (
-                  <Reveal key={p.title}>
-                    <Link
-                      to="/projects"
-                      className="group block border border-border bg-card transition-all duration-300 hover:border-foreground/40 hover:shadow-md"
-                    >
-                      <div className="grid gap-0 lg:grid-cols-12">
-                        {/* Visual Comparison: 2 Key Media Views */}
-                        <div className="grid grid-cols-2 gap-px bg-border lg:col-span-7">
-                          <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
-                            <img
-                              src={firstMedia?.src ?? p.image}
-                              alt={`${p.title} — ${firstMedia?.label ?? "Primary View"}`}
-                              loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <span className="label-mono absolute bottom-2 left-2 bg-ink/85 px-2 py-0.5 text-[0.65rem] text-ink-foreground backdrop-blur-xs">
-                              {firstMedia?.stage ?? "Design View"}
-                            </span>
-                          </div>
-                          <div className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/11]">
-                            <img
-                              src={secondMedia?.src ?? p.image}
-                              alt={`${p.title} — ${secondMedia?.label ?? "Secondary View"}`}
-                              loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <span className="label-mono absolute bottom-2 left-2 bg-signal px-2 py-0.5 text-[0.65rem] font-bold text-white">
-                              {secondMedia?.stage ?? "Execution"}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Metadata & Description */}
-                        <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
-                          <div>
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="label-mono font-semibold text-signal">
-                                {p.category}
-                                {p.location ? ` · ${p.location}` : ""}
-                              </span>
-                              {p.status && (
-                                <span className="label-mono border border-signal/30 bg-signal/10 px-2 py-0.5 text-[0.68rem] font-semibold text-signal">
-                                  {p.status}
-                                </span>
-                              )}
-                            </div>
-
-                            <h3 className="mt-3 font-display text-2xl font-extrabold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
-                              {p.title}
-                            </h3>
-                            {p.subtitle && (
-                              <p className="mt-0.5 text-base font-semibold text-muted-foreground">
-                                {p.subtitle}
-                              </p>
-                            )}
-
-                            {p.description && (
-                              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                                {p.description}
-                              </p>
-                            )}
-
-                            {p.scope && p.scope.length > 0 && (
-                              <div className="mt-5 flex flex-wrap gap-1.5">
-                                {p.scope.slice(0, 3).map((s) => (
-                                  <span
-                                    key={s}
-                                    className="label-mono border border-border bg-paper px-2 py-0.5 text-[0.68rem] text-muted-foreground"
-                                  >
-                                    {s}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-
-                          <div className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-xs font-bold tracking-[0.14em] uppercase text-primary transition-transform duration-300 group-hover:translate-x-1">
-                            <span>View Project &amp; Full Gallery</span>
-                            <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:rotate-45" />
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </Reveal>
-                );
-              })}
+            <div className="mt-8 grid gap-6 sm:mt-10 md:grid-cols-2 lg:gap-8">
+              {projects.map((p) => (
+                <Reveal key={p.title} className="h-full">
+                  <HomeProjectCard project={p} />
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
