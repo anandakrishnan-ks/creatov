@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award } from "lucide-react";
+import { Award, Building2, Calendar, MapPin } from "lucide-react";
 import { seo } from "@/lib/seo";
 import { images } from "@/lib/images";
 import { ParallaxImage } from "@/components/site/Parallax";
-import { CtaBand, PageHero, Reveal, SectionHeading, Eyebrow } from "@/components/site/ui";
+import { CtaBand, PageHero, Reveal, SectionHeading, Eyebrow, CtaLink } from "@/components/site/ui";
 
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -130,11 +130,11 @@ function About() {
             intro="Meet Mr. Riyas Basheer, Managing Director of CREATOV Engineering Consultancy."
           />
 
-          {/* Profile & Biography */}
-          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
-            {/* Portrait Photo */}
-            <Reveal clip className="lg:col-span-5">
-              <div className="group relative border border-border bg-card">
+          {/* Profile & Biography - Refined Photo Sizing & Scaled Typography */}
+          <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-[240px_1fr] lg:gap-12 lg:items-start">
+            {/* Portrait Photo (Compact & Refined) */}
+            <Reveal clip className="w-full">
+              <div className="group relative mx-auto max-w-[240px] sm:max-w-[260px] lg:mx-0 overflow-hidden border border-border bg-card shadow-xs">
                 <div className="aspect-[4/5] w-full overflow-hidden bg-muted">
                   <img
                     src={images.managingDirector}
@@ -146,15 +146,17 @@ function About() {
                     className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
-                <div className="border-t border-border bg-background/95 p-4 sm:p-5">
-                  <div className="flex items-center justify-between gap-2">
+                <div className="border-t border-border bg-background/95 p-3 sm:p-3.5">
+                  <div className="flex items-center justify-between gap-1.5">
                     <div>
-                      <p className="font-display text-lg font-extrabold text-foreground">
+                      <p className="font-display text-base font-extrabold text-foreground">
                         Mr. Riyas Basheer
                       </p>
-                      <p className="label-mono text-xs text-muted-foreground">CREATOV Leadership</p>
+                      <p className="label-mono text-[0.68rem] text-muted-foreground">
+                        CREATOV Leadership
+                      </p>
                     </div>
-                    <span className="label-mono border border-signal/30 bg-signal/5 px-2.5 py-1 text-[0.68rem] font-semibold text-signal">
+                    <span className="label-mono border border-signal/30 bg-signal/5 px-2 py-0.5 text-[0.62rem] font-semibold text-signal">
                       Managing Director
                     </span>
                   </div>
@@ -162,28 +164,28 @@ function About() {
               </div>
             </Reveal>
 
-            {/* Bio content */}
-            <div className="lg:col-span-7">
+            {/* Bio content (Compact & Elegant Typography) */}
+            <div>
               <Reveal delay={80}>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="label-mono border border-border bg-paper px-2.5 py-0.5 text-[0.68rem] font-semibold text-foreground">
                     12+ Years Industry Experience
                   </span>
-                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                  <span className="label-mono border border-border bg-paper px-2.5 py-0.5 text-[0.68rem] font-semibold text-foreground">
                     Structural Engineering
                   </span>
-                  <span className="label-mono border border-border bg-paper px-3 py-1 text-xs font-semibold text-foreground">
+                  <span className="label-mono border border-border bg-paper px-2.5 py-0.5 text-[0.68rem] font-semibold text-foreground">
                     Consultancy Management
                   </span>
                 </div>
-                <h3 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+                <h3 className="mt-3 font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
                   Engineering Rigor &amp; Practical Industry Exposure
                 </h3>
               </Reveal>
 
               <Reveal
                 delay={140}
-                className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
+                className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground"
               >
                 <p>
                   Mr. Riyas Basheer is the Managing Director with over 12 years of professional
@@ -198,31 +200,31 @@ function About() {
                 </p>
               </Reveal>
 
-              <Reveal delay={200} className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div className="border border-border bg-paper/60 p-4">
-                  <p className="label-mono text-signal">Foundation</p>
-                  <p className="mt-1 font-display text-base font-bold text-foreground">
+              <Reveal delay={200} className="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                <div className="border border-border bg-paper/60 p-3 sm:p-3.5">
+                  <p className="label-mono text-[0.65rem] text-signal font-semibold">Foundation</p>
+                  <p className="mt-0.5 font-display text-sm font-bold text-foreground">
                     Technical Foundation
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-0.5 text-[0.72rem] text-muted-foreground leading-snug">
                     Structural engineering analysis &amp; sound execution
                   </p>
                 </div>
-                <div className="border border-border bg-paper/60 p-4">
-                  <p className="label-mono text-signal">Leadership</p>
-                  <p className="mt-1 font-display text-base font-bold text-foreground">
+                <div className="border border-border bg-paper/60 p-3 sm:p-3.5">
+                  <p className="label-mono text-[0.65rem] text-signal font-semibold">Leadership</p>
+                  <p className="mt-0.5 font-display text-sm font-bold text-foreground">
                     Consultancy Management
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-0.5 text-[0.72rem] text-muted-foreground leading-snug">
                     Comprehensive project oversight &amp; coordination
                   </p>
                 </div>
-                <div className="border border-border bg-paper/60 p-4">
-                  <p className="label-mono text-signal">Vision</p>
-                  <p className="mt-1 font-display text-base font-bold text-foreground">
+                <div className="border border-border bg-paper/60 p-3 sm:p-3.5">
+                  <p className="label-mono text-[0.65rem] text-signal font-semibold">Vision</p>
+                  <p className="mt-0.5 font-display text-sm font-bold text-foreground">
                     Sustainable Growth
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-0.5 text-[0.72rem] text-muted-foreground leading-snug">
                     Commitment to excellence &amp; modern innovation
                   </p>
                 </div>
@@ -231,41 +233,41 @@ function About() {
           </div>
 
           {/* Award Spotlight (Photo 2 context) */}
-          <Reveal delay={120} className="mt-12 sm:mt-16">
-            <div className="relative overflow-hidden border border-border bg-paper p-6 sm:p-8 lg:p-10">
+          <Reveal delay={120} className="mt-10 sm:mt-12">
+            <div className="relative overflow-hidden border border-border bg-paper p-5 sm:p-6 lg:p-8">
               <div
                 className="blueprint-grid pointer-events-none absolute inset-0 opacity-40"
                 aria-hidden
               />
-              <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+              <div className="relative grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-10">
                 {/* Content */}
                 <div className="lg:col-span-7">
-                  <div className="inline-flex items-center gap-2 border border-signal/30 bg-signal/10 px-3 py-1.5 text-signal">
-                    <Award className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    <span className="label-mono text-xs font-semibold">
+                  <div className="inline-flex items-center gap-1.5 border border-signal/30 bg-signal/10 px-2.5 py-1 text-signal">
+                    <Award className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span className="label-mono text-[0.68rem] font-semibold">
                       International Recognition &bull; Oman
                     </span>
                   </div>
-                  <h4 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+                  <h4 className="mt-3 font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
                     Best Engineering Consultancy Award in south region of oman
                   </h4>
-                  <p className="mt-1 label-mono text-xs text-muted-foreground">
+                  <p className="mt-1 label-mono text-[0.72rem] text-muted-foreground">
                     Jalan Bani Bu Ali &bull; Construction Consultancy Excellence
                   </p>
-                  <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     In addition to his engineering career, he established and managed a construction
                     consultancy in Oman. His dedication to quality, professional excellence, and
                     client satisfaction earned him the prestigious Best Engineering Consultancy
                     Award in south region of oman (Jalan Bani Bu Ali).
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
-                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.7rem] text-foreground">
                       Dedication to Quality
                     </span>
-                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
+                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.7rem] text-foreground">
                       Professional Excellence
                     </span>
-                    <span className="label-mono border border-border bg-background px-3 py-1.5 text-xs text-foreground">
+                    <span className="label-mono border border-border bg-background px-2.5 py-1 text-[0.7rem] text-foreground">
                       Client Satisfaction
                     </span>
                   </div>
@@ -273,8 +275,8 @@ function About() {
 
                 {/* Award Ceremony Photo */}
                 <div className="lg:col-span-5">
-                  <div className="group relative overflow-hidden border border-border bg-background shadow-xs">
-                    <div className="aspect-[4/3] sm:aspect-[16/12] w-full overflow-hidden bg-muted">
+                  <div className="group relative mx-auto max-w-[320px] overflow-hidden border border-border bg-background shadow-xs">
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
                       <img
                         src={images.mdAward}
                         alt="Mr. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman (Jalan Bani Bu Ali)"
@@ -285,7 +287,7 @@ function About() {
                         className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
                       />
                     </div>
-                    <div className="border-t border-border bg-background/95 p-3.5 sm:p-4 text-xs text-muted-foreground">
+                    <div className="border-t border-border bg-background/95 p-3 text-xs text-muted-foreground">
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-semibold text-foreground">
                           Award Presentation Ceremony
@@ -294,7 +296,7 @@ function About() {
                           Oman
                         </span>
                       </div>
-                      <p className="mt-0.5 text-[0.76rem] text-muted-foreground">
+                      <p className="mt-0.5 text-[0.72rem] text-muted-foreground">
                         South Region of Oman (Jalan Bani Bu Ali)
                       </p>
                     </div>
@@ -305,7 +307,7 @@ function About() {
           </Reveal>
 
           {/* Director: Sadeena Noorjahan (Photo, Name, Designation) */}
-          <Reveal clip className="mt-12 sm:mt-16">
+          <Reveal clip className="mt-10 sm:mt-12">
             <div className="border-t border-border pt-8 sm:pt-10">
               <p className="label-mono text-xs font-semibold uppercase tracking-wider text-primary">
                 Board &amp; Leadership
@@ -332,6 +334,123 @@ function About() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* KOLLAM BRANCH INAUGURATION SECTION */}
+      <section id="kollam-branch" className="border-t border-border bg-paper/30">
+        <div className="site-container section-space">
+          <SectionHeading
+            eyebrow="Milestones & Expansion"
+            title="Kollam Branch Office Inauguration"
+            intro="Marking an important milestone in CREATOV's journey with the grand opening of our branch office in Thattamala, Kollam."
+          />
+
+          <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-center lg:gap-12">
+            {/* Inauguration Poster Image */}
+            <Reveal clip className="lg:col-span-5">
+              <div className="group relative mx-auto max-w-sm overflow-hidden border border-border bg-card shadow-sm transition-all duration-300 hover:border-foreground/40 hover:shadow-md">
+                <div className="aspect-[723/1024] w-full overflow-hidden bg-muted">
+                  <img
+                    src={images.kollamInauguration}
+                    alt="CREATOV Engineering Consultancy Kollam Branch Grand Opening Ceremony Poster with Chief Guest Sri. N.K Premachandran (M.P, Kollam)"
+                    loading="lazy"
+                    decoding="async"
+                    width={723}
+                    height={1024}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="border-t border-border bg-background/95 p-3.5 sm:p-4 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold text-foreground">Grand Opening Ceremony</span>
+                    <span className="label-mono text-[0.68rem] font-semibold text-signal">
+                      Kollam Branch
+                    </span>
+                  </div>
+                  <p className="mt-0.5 text-[0.74rem] text-muted-foreground">
+                    Thattamala, Kollam &bull; 25.01.2025
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Narrative & Event Details */}
+            <div className="lg:col-span-7">
+              <Reveal delay={80}>
+                <div className="inline-flex items-center gap-1.5 border border-signal/30 bg-signal/10 px-3 py-1 text-signal">
+                  <Building2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span className="label-mono text-xs font-semibold">
+                    Branch Office Inauguration
+                  </span>
+                </div>
+
+                <h3 className="mt-3 font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl lg:text-3xl">
+                  Inaugurated by Sri. N.K Premachandran (M.P, Kollam)
+                </h3>
+              </Reveal>
+
+              <Reveal
+                delay={140}
+                className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground sm:text-base"
+              >
+                <p>
+                  CREATOV Engineering Consultancy Pvt. Ltd. celebrated a defining milestone with the
+                  Grand Opening Ceremony of our Kollam branch office. The office was formally
+                  inaugurated by esteemed Chief Guest{" "}
+                  <strong className="font-semibold text-foreground">
+                    Sri. N.K Premachandran, Member of Parliament (Kollam)
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Located near Thattamala Juma Masjid, Thattamala P.O., Kollam, the branch delivers
+                  our complete range of architectural design, structural engineering, estimation
+                  &amp; BOQ, government planning approvals, and project management consultancy
+                  directly to clients across South Kerala.
+                </p>
+              </Reveal>
+
+              {/* Event & Office Details Grid */}
+              <Reveal delay={200} className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="border border-border bg-card p-3.5 sm:p-4">
+                  <div className="flex items-center gap-2 text-signal">
+                    <Calendar className="h-4 w-4 shrink-0" />
+                    <span className="label-mono text-[0.68rem] font-semibold">
+                      Event Date &amp; Time
+                    </span>
+                  </div>
+                  <p className="mt-1 font-display text-sm font-bold text-foreground">
+                    25.01.2025 &bull; 9:30 AM
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    Official Ribbon Cutting &amp; Grand Opening
+                  </p>
+                </div>
+
+                <div className="border border-border bg-card p-3.5 sm:p-4">
+                  <div className="flex items-center gap-2 text-signal">
+                    <MapPin className="h-4 w-4 shrink-0" />
+                    <span className="label-mono text-[0.68rem] font-semibold">Branch Location</span>
+                  </div>
+                  <p className="mt-1 font-display text-sm font-bold text-foreground">
+                    Thattamala, Kollam
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    Near Thattamala Juma Masjid, Kollam – 691020
+                  </p>
+                </div>
+              </Reveal>
+
+              {/* Badges & Contact */}
+              <Reveal delay={240} className="mt-6 flex flex-wrap items-center gap-3">
+                <CtaLink to="/contact">Contact Kollam Office</CtaLink>
+                <span className="label-mono text-xs text-muted-foreground">
+                  Ph: 8075607280, 6238802093
+                </span>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
       <CtaBand />

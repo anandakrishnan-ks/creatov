@@ -72,5 +72,15 @@ describe("About page", () => {
       /Mr\. Riyas Basheer receiving the Best Engineering Consultancy Award in south region of oman/i,
     );
     expect(awardPhoto).toBeInTheDocument();
+
+    // Verify Kollam Branch Inauguration section
+    expect(
+      screen.getByRole("heading", { name: /Kollam Branch Office Inauguration/i }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText(/Sri\. N\.K Premachandran/i).length).toBeGreaterThan(0);
+    const inaugurationPoster = screen.getByAltText(
+      /CREATOV Engineering Consultancy Kollam Branch Grand Opening/i,
+    );
+    expect(inaugurationPoster).toBeInTheDocument();
   });
 });

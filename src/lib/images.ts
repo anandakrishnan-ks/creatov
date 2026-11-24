@@ -5,6 +5,7 @@ import interior from "@/assets/images/about/courtyard-interior.jpg";
 import managingDirector from "@/assets/images/about/riyas-basheer.jpg";
 import directorSadeena from "@/assets/images/about/sadeena-noorjahan.jpg";
 import mdAward from "@/assets/images/about/best-consultancy-award-oman.jpg";
+import kollamInauguration from "@/assets/images/about/kollam-branch-inauguration.jpg";
 import drawings from "@/assets/images/services/cinematic/architectural-design.webp";
 import commercial from "@/assets/images/services/cinematic/commercial-projects.webp";
 import estimationBoq from "@/assets/images/services/cinematic/estimation-and-boq.webp";
@@ -52,6 +53,7 @@ export const images = {
   managingDirector,
   directorSadeena,
   mdAward,
+  kollamInauguration,
   drawings,
   commercial,
   estimationBoq,
